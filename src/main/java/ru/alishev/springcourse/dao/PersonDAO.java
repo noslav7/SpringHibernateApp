@@ -30,18 +30,25 @@ public class PersonDAO {
     }
 
     public Person show(int id) {
-        return null;
+        Session session = this.sessionFactory.getCurrentSession();
+        return session.load(Person.class, id);
     }
 
     public void save(Person person) {
-
+        Session session = this.sessionFactory.getCurrentSession();
+        session.persist(person);
     }
 
     public void update(int id, Person updatedPerson) {
-
+        Session session = this.sessionFactory.getCurrentSession();
+        session.saveOrUpdate(String.valueOf(id), updatedPerson);
     }
 
     public void delete(int id) {
-
+        Session session = this.sessionFactory.getCurrentSession();
+        Person p = (Person) session.load(Person.class, id);
+        if(null != p){
+            session.delete(p);
+        }
     }
 }
