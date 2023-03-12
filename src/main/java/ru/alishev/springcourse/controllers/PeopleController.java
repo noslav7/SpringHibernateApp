@@ -30,8 +30,8 @@ public class PeopleController {
     public String index(Model model) {
         model.addAttribute("people", peopleService.findAll());
 
-        List<Item> items1 = itemService.findByItemName("Airpods");
-        List<Item> items2 = itemService.findByOwner(peopleService.findAll().get(0));
+        System.out.println(itemService.findByItemName("Airpods"));
+        System.out.println(itemService.findByOwner(peopleService.findAll().get(0)));
 
         peopleService.test();
 
