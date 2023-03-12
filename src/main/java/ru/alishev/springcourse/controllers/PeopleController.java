@@ -5,25 +5,36 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.alishev.springcourse.models.Item;
 import ru.alishev.springcourse.models.Person;
+import ru.alishev.springcourse.services.ItemService;
 import ru.alishev.springcourse.services.PeopleService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
 
     private final PeopleService peopleService;
+    private final ItemService itemService;
 
     @Autowired
-    public PeopleController(PeopleService peopleService) {
+    public PeopleController(PeopleService peopleService, ItemService itemService) {
         this.peopleService = peopleService;
+        this.itemService = itemService;
     }
 
     @GetMapping()
     public String index(Model model) {
         model.addAttribute("people", peopleService.findAll());
+
+        List<Item> items1 = itemService.findByItemName("Airpods");
+        List<Item> items2 = itemService.findByOwner(peopleService.findAll().get(0));
+
+        peopleService.test();
+
         return "people/index";
     }
 
