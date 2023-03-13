@@ -11,7 +11,6 @@ import ru.alishev.springcourse.services.ItemService;
 import ru.alishev.springcourse.services.PeopleService;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/people")
